@@ -1,0 +1,38 @@
+# Kira is intentionally configurable. The default is a serious small-model
+# configuration, not a toy character-level network.
+model:
+  vocab_size: 16000
+  max_seq_len: 1024
+  dim: 768
+  n_layers: 12
+  n_heads: 12
+  n_kv_heads: 4
+  ffn_dim: 2048
+  dropout: 0.0
+  rope_theta: 10000.0
+  norm_eps: 0.00001
+  tie_embeddings: true
+  use_qk_norm: true
+
+training:
+  seed: 42
+  batch_size: 2
+  grad_accumulation: 16
+  epochs: 3
+  max_steps: -1
+  learning_rate: 0.0003
+  min_learning_rate: 0.00003
+  warmup_steps: 500
+  weight_decay: 0.1
+  grad_clip: 1.0
+  validation_fraction: 0.02
+  eval_every: 250
+  eval_batches: 50
+  save_every: 500
+  mixed_precision: bf16
+  num_workers: 2
+  log_every: 10
+  checkpoint_dir: checkpoints
+  data_file: data/train.txt
+  validation_file: data/corpus/val.txt
+  tokenizer_dir: tokenizer/model
